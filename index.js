@@ -149,6 +149,11 @@ async function run() {
             const result = await menuCollection.deleteOne(query);
             res.send(result);
         })
+        app.post('/menu', verifyJwt, verifyAdmin, async (req, res) => {
+            const newItem = req.body;
+            const result = await menuCollection.insertOne(newItem);
+            res.send(result);
+        })
 
         // app.get('/menu/:category', async (req, res) => {
         //     const category = req.params.category;
